@@ -17,6 +17,9 @@
                 <b > {{response.input}} </b>
                 {{'wynosi '}}
                 <b > {{response.digit}} </b>
+                <div v-if="response.digit === 0">
+                    - jest to poprawny ciąg
+                </div>
             </div>
         </form>
     </div>
