@@ -29,7 +29,10 @@
             </div>
             <div class="col-sm-4">
                 <h5>Posortowane: </h5>
-                <div v-for="(item, index) in response" v-bind:key="index">
+                <div v-if="response.errors">
+                    {{response.errors.toString()}}
+                </div>
+                <div v-else v-for="(item, index) in response" v-bind:key="index">
                     {{item.name}}
                 </div>
             </div>
@@ -61,12 +64,13 @@
                 })
             },
             getNN() {
-                nnService.postData(this.places).then((response) => {
-                    this.response = response
-                })
+                if (this.places.length !== 1) {
+                    nnService.postData(this.places).then((response) => {
+                        this.response = response
+                    })
+                }
             },
             removePlace(indx) {
-                console.log(indx)
                 if (this.places.length !== 1)
                     this.places.splice(indx, 1);
             }
