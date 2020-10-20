@@ -1,12 +1,20 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
     <HelloWorld msg="Welcome to Your Vue.js App"/>
   </div>
 </template>
 
 <script>
 import HelloWorld from './components/HelloWorld.vue'
+import HttpRequest from "./core/requests/HttpRequest";
+import LuhnaService from "./core/service/LuhnaService";
+import NNService from "./core/service/NNService";
+
+export const httpRequest = new HttpRequest("http://localhost:8080");
+export const luhnaService = new LuhnaService(httpRequest);
+export const nnService = new NNService(httpRequest);
+
+
 
 export default {
   name: 'App',
